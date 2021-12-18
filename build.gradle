@@ -1,4 +1,5 @@
 //file:noinspection GrMethodMayBeStatic
+
 plugins {
 	id 'maven-publish'
 
