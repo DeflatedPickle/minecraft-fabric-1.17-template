@@ -4,6 +4,7 @@ on:
   push:
     paths-ignore:
       - 'docs/**'
+      - '.github/**'
     branches:
       - main
   pull_request:
@@ -40,7 +41,7 @@ jobs:
         run: chmod +x gradlew
 
       - name: Build with Gradle
-        run: ./gradlew --no-daemon build
+        run: ./gradlew build
 
       - name: Upload Artifact
         uses: actions/upload-artifact@v2
