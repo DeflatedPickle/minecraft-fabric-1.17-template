@@ -27,7 +27,7 @@ jobs:
       - name: Setup JDK
         uses: actions/setup-java@v2
         with:
-          java-version: 17.0.1
+          java-version: 17
           distribution: microsoft
 
       - name: Setup Gradle
