@@ -10,6 +10,7 @@ pluginManagement {
 
 		id 'fabric-loom' version loom_version
 
+		id "org.jetbrains.gradle.plugin.idea-ext" version idea_ext_version
 		id 'com.diffplug.spotless' version spotless_version
 		id "net.kyori.blossom" version blossom_version
 	}

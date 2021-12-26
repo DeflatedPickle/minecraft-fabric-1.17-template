@@ -1,4 +1,5 @@
 //file:noinspection GrMethodMayBeStatic
+import static org.jetbrains.gradle.ext.ActionDelegationConfig.TestRunner
 
 plugins {
 	id 'maven-publish'
@@ -7,6 +8,7 @@ plugins {
 
 	id 'fabric-loom'
 
+	id "org.jetbrains.gradle.plugin.idea-ext"
 	id 'com.diffplug.spotless'
 	id 'net.kyori.blossom'
 }
@@ -16,6 +18,10 @@ version = project.mod_version
 group = project.maven_group
 
 repositories {
+	flatDir {
+		dirs "./lib", "./.gradle/loom-cache/remapped_mods"
+	}
+
 	maven { url 'https://jitpack.io' }
 	maven { url "https://maven.terraformersmc.com" }
 	mavenCentral()
@@ -31,7 +37,16 @@ dependencies {
 
 	// https://fabricmc.net/wiki/documentation:libraries
 	modImplementation "com.terraformersmc:modmenu:${modmenu_version}"
+
+	modRuntime files("./lib")
 }
+
+task copyLocal(type: Copy) {
+	from("./lib")
+	into("./run/mods")
+	include("*.jar")
+}
+processResources.dependsOn copyLocal
 
 loom {
 	accessWidenerPath = file("src/main/resources/${archives_base_name}.accesswidener")
@@ -67,8 +82,8 @@ spotless {
 
 	java {
 		importOrder()
-		removeUnusedImports()
-		googleJavaFormat()
+		// removeUnusedImports()
+		// googleJavaFormat()
 
 		licenseHeader "/* ${expand_license(license_header)} */\n\n"
 	}
@@ -131,6 +146,17 @@ processResources {
 			"group"    : project.maven_group,
 			"license"  : project.license_type,
 		])
+	}
+}
+
+idea.project.settings {
+	delegateActions {
+		delegateBuildRunToGradle = false
+		testRunner = TestRunner.PLATFORM
+	}
+
+	taskTriggers {
+		beforeSync project.getTasksByName("genSources", true)
 	}
 }
 
