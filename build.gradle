@@ -81,15 +81,18 @@ spotless {
 	ratchetFrom "origin/${branch}"
 
 	java {
+		target 'src/*/java/**/*.java'
+
 		importOrder()
-		// removeUnusedImports()
-		// googleJavaFormat()
+		removeUnusedImports()
+		googleJavaFormat()
 
 		licenseHeader "/* ${expand_license(license_header)} */\n\n"
 	}
 
 	groovyGradle {
 		target '*.gradle'
+		
 		greclipse()
 	}
 
@@ -97,6 +100,12 @@ spotless {
 		ktlint(ktlint_version)
 
 		licenseHeader "/* ${expand_license(license_header)} */\n\n"
+	}
+
+	json {
+		target 'src/**/*.json'
+
+		simple()
 	}
 
 	format 'misc', {
