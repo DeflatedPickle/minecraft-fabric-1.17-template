@@ -1,4 +1,4 @@
-/* Copyright (c) 2021 Example under the CC0 license */
+/* Copyright (c) 2021-2022 Example under the CC0 license */
 
 package com.example.examplemod.mixin;
 
@@ -12,7 +12,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 @SuppressWarnings("UnusedMixin")
 @Mixin(Block.class)
 public abstract class ExampleMixin {
-  @Inject(method = "onSteppedOn", at = @At("HEAD"))
+  @Inject(method = "onBreak", at = @At("HEAD"))
   public void init(CallbackInfo info) {
     ExampleMod.INSTANCE.init();
   }
