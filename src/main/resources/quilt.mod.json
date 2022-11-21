@@ -31,7 +31,7 @@
                 "id": "fabric-language-kotlin"
             }
         ],
-        "accessWidener": "${id}.accesswidener",
+        "access_widener": "${id}.accesswidener",
         "icon": "assets/${id}/icon.png",
         "intermediate_mappings": "net.fabricmc:intermediary",
         "entrypoints": {"init": [{
