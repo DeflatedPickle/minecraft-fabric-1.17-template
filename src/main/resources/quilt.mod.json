@@ -1,6 +1,7 @@
 {
     "schema_version": 1,
     "mixin": ["${id}.mixins.json"],
+    "access_widener": "${id}.accesswidener",
     "quilt_loader": {
         "metadata": {
             "license": "MIT",
@@ -31,7 +32,6 @@
                 "id": "fabric-language-kotlin"
             }
         ],
-        "access_widener": "${id}.accesswidener",
         "icon": "assets/${id}/icon.png",
         "intermediate_mappings": "net.fabricmc:intermediary",
         "entrypoints": {"init": [{
