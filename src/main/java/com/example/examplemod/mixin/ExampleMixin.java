@@ -1,4 +1,4 @@
-/* Copyright (c) 2021-2022 Example under the CC0 license */
+/* Copyright (c) 2021-2023 Example under the CC0 license */
 
 package com.example.examplemod.mixin;
 
